@@ -1,5 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
+import { routes } from "./Routes/product.routes.js";
+import productModel from "./Model/product.model.js";
 
 const app = new express();
 const port = 7100;
@@ -10,7 +12,7 @@ app.listen(port,() => {
 
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://<db_username>:<db_password>@cluster0.qhlea.mongodb.net/')
+mongoose.connect('mongodb+srv://prakul:prakul@cluster0.qhlea.mongodb.net/')
 
 const db = mongoose.connection;
 
@@ -21,3 +23,8 @@ db.on("open",() => {
 db.on('error',() => {
     console.log(`disconnected from server`);
 })
+
+
+routes(app);
+
+
