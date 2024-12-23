@@ -1,7 +1,12 @@
-import { addProductToCart } from "../Controller/cart.control"
+import { addProductToCart, deleteProduct, updateQuantity } from "../Controller/cart.control.js"
+import express from "express";
+import { verifyToken } from "../MiddleWares/verifyToken.js";
 
-const cartRoutes = (app) => {
-    app.post('/cart',addProductToCart);
-    app.put('')
-    app.delete()
+
+export const cartRoutes = (app) => {
+    const router = express.Router()
+    
+    app.post('/cart',verifyToken,addProductToCart);
+    app.put('/cart/',verifyToken,updateQuantity);
+    app.delete('/cart/',verifyToken,deleteProduct);
 }
