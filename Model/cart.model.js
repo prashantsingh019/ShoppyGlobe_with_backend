@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const {Schema,model} = mongoose;
 
 const cartSchema = Schema({
-    productID:String,
+    productId:mongoose.Schema.Types.ObjectId,
     quantity:Number,
 });
 
