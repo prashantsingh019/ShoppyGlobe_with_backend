@@ -1,7 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import { routes } from "./Routes/product.routes.js";
-import productModel from "./Model/product.model.js";
+import { cartRoutes } from "./Routes/cart.routes.js";
+import { userRoutes } from "./Routes/userRoutes.js";
+
 
 const app = new express();
 const port = 7100;
@@ -26,5 +28,5 @@ db.on('error',() => {
 
 
 routes(app);
-
-
+userRoutes(app);
+cartRoutes(app);
