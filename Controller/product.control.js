@@ -32,6 +32,7 @@ export const addProducts = async (req, res) => {
   }
 };
 
+// take product by it's ID
 export const fetchProductByID = async (req, res) => {
   try {
     const { id } = req.params;

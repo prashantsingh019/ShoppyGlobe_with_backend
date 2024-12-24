@@ -2,7 +2,7 @@ import { addProductToCart, deleteProduct, updateQuantity } from "../Controller/c
 import express from "express";
 import { verifyToken } from "../MiddleWares/verifyToken.js";
 
-
+// Cart routes
 export const cartRoutes = (app) => {
     const router = express.Router()
     

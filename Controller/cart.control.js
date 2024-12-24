@@ -1,7 +1,7 @@
 import cartModel from "../Model/cart.model.js";
 import productModel from "../Model/product.model.js";
 
-
+// Add product to Cart
 export const addProductToCart = async (req,res) => {
    try{
       const {productId,quantity} = req.body;
@@ -24,6 +24,7 @@ export const addProductToCart = async (req,res) => {
      res.status(500).json(`Internal Server error`);
    }
 }
+// Update Quantity
 export const updateQuantity = async (req,res) => {
   try{
     const{productID,quantity} = req.body;
@@ -37,6 +38,7 @@ export const updateQuantity = async (req,res) => {
   }
 }
 
+// Delete product by it's ID
 export const deleteProduct = async (req,res) => {
   try{
     const {productID} = req.body;

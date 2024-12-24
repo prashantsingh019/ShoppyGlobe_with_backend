@@ -1,6 +1,8 @@
 import userModel from "../Model/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
+// Register Functionality
 export const registerUser = async (req,res) => {
   try{
     const {fullName,email,password} = req.body;
@@ -19,20 +21,21 @@ export const registerUser = async (req,res) => {
   }
 }
 
+// Login Functionality
 export const login = async (req,res) => {
     try{
        const {email,password} = req.body;
-       const isExist = await userModel.findOne({email})
+       const isExist = await userModel.findOne({email}) // Checking User Collection
        if(isExist){
-       let isValidPassword = bcrypt.compareSync(password,isExist.password);
-       if(!isValidPassword) return res.status(403).json('Password is Incorrect')
-        let token = jwt.sign({id:isExist["_id"]},"secureKey",{expiresIn: "10m"})
+       let isValidPassword = bcrypt.compareSync(password,isExist.password);      // comparision
+       if(!isValidPassword) return res.status(403).json('Password is Incorrect') // If password incorrect
+        let token = jwt.sign({id:isExist["_id"]},"secureKey",{expiresIn: "10m"}) // Sign using JWT
         res.status(200).json({
             user:{
                 email:isExist.email,
                 fullName:isExist.fullName
             },
-            accessToken: token,
+            accessToken: token, // sending access token to client
         })
        }else{
          res.status(404).json(`user with this email address not found`)

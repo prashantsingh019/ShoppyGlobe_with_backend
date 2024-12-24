@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const {Schema,model} = mongoose;
-
+// user schema
 const userSchema = Schema({
     fullName:{
         type:String,
